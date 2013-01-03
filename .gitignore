@@ -11,6 +11,9 @@
 /db/*.sqlite3
 
 # Ignore all logfiles and tempfiles.
+*_DS_STORE
+/public/videos
+/public/slides
 /log/*.log
 /tmp
 *.rbc
