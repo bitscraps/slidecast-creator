@@ -2,3 +2,6 @@
 
 A site which aims to automate somewhat the creation of a slidecast (conference in a box)
 
+== uses docsplit to manage ppt and pdfs 
+
+http://documentcloud.github.com/docsplit/
