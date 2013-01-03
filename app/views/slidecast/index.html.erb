@@ -1,0 +1,45 @@
+<div id="timeline">
+	
+</div>
+<div id="timer-start">
+	0:00
+</div>
+<div id="timer-end" class="">
+
+</div>
+
+<div id="video-window">
+	<video src="/videos/<%= @video %>" autobuffer id="video" style="width:200px;height:auto;"/>
+	<p id="seektime" style="margin-top:120px;">0:00</p>
+
+</div>
+
+<script>
+video = document.getElementById('video');
+var vid_duration = 0;
+var mousemoveTimer;
+var seekPosition;
+
+window.setInterval(function(t){
+  if (video.readyState > 0) {
+    var duration = $('#duration').get(0);
+    vid_duration = Math.round(video.duration);
+    vid_mins = parseInt(vid_duration / 60);
+    vid_seconds = vid_duration %60 ;
+
+    document.getElementById('timer-end').innerHTML = vid_mins + ":" + vid_seconds;
+    clearInterval(t);
+
+  }
+},500);
+
+$("#timeline").mousemove(function(e){
+
+	cursorX = e.pageX - this.offsetLeft;
+	seekPosition = (parseFloat(vid_duration) / $('#timeline').width())* cursorX;
+	video.currentTime = seekPosition;
+	$('#video-window').css('left',cursorX-100);
+	$('#seektime').html(seekPosition);
+	
+});
+</script>
