@@ -1,5 +1,9 @@
 <div class="slides">
-	<%= @output %>
+	<% @slide_images.each do |slide| %>
+		<% if slide =~ /\.png/ %>
+			<img id="<%= slide %>" src="<%= "/slides/#{@slides}-images/#{slide}" %>" style="float:left;width:160px;height:auto;margin:9px; border:3px SOLID #FFF;" onclick="toggleSlide(this)">
+		<% end %>
+	<% end %>
 </div>
 
 <div id="timeline">
@@ -23,6 +27,7 @@ video = document.getElementById('video');
 var vid_duration = 0;
 var mousemoveTimer;
 var seekPosition;
+var selectedSlide = undefined;
 
 window.setInterval(function(t){
   if (video.readyState > 0) {
@@ -46,4 +51,23 @@ $("#timeline").mousemove(function(e){
 	$('#seektime').html(seekPosition);
 	
 });
+
+$("#timeline").mouseup(function(e){
+	if (selectSlide != undefined) {
+		dropSlide();
+	}
+});
+
+function toggleSlide(ele) {
+	if (selectSlide != undefined) {
+		selectSlide.style.border = '3px SOLID #FFFFFF'
+}
+	selectSlide = ele;
+	ele.style.border = '3px SOLID #555';
+}
+
+function releaseSlide() {
+
+	selectSlide = undefined;
+}
 </script>

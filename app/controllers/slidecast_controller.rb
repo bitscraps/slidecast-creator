@@ -5,7 +5,7 @@ class SlidecastController < ApplicationController
 
   	#mkdir to ouput files to
   	@output = `docsplit images #{Rails.root}/public/slides/#{@slides} --size 700x --format png --output #{Rails.root}/public/slides/#{@slides}-images/`
-  	#Docsplit.extract_images("#{RailsRoot}/public/slides/#{@slides}", :size => '920x240', :format => [:png], :output => "#{RailsRoot}/public/slides/#{@slides}/")
-  
+  	@slide_images = Dir.entries("#{Rails.root}/public/slides/#{@slides}-images")
+
   end
 end
